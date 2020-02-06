@@ -6,7 +6,7 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 14:49:54 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/06 14:54:15 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/06 14:55:32 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main()
 	void	*win_ptr;
 
 	mix_ptr = mix_init();
-	win_ptr = mix_new_window();
+	win_ptr = mix_new_window(mix_ptr, 500, 500, "mix 42");
 	mix_loop(mix_ptr);
 }
