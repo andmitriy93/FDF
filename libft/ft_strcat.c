@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/06 14:49:54 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/06 14:55:32 by dmian            ###   ########.fr       */
+/*   Created: 2019/09/20 13:46:06 by dmian             #+#    #+#             */
+/*   Updated: 2019/09/25 12:46:23 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mix.h"
-
-
-int	main()
+char	*ft_strcat(char *s1, const char *s2)
 {
-	void	*mix_ptr;
-	void	*win_ptr;
+	int i;
+	int j;
 
-	mix_ptr = mix_init();
-	win_ptr = mix_new_window(mix_ptr, 500, 500, "mix 42");
-	mix_loop(mix_ptr);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		i++;
+	}
+	while (s2[j])
+	{
+		s1[i] = s2[j];
+		j++;
+		i++;
+	}
+	s1[i] = '\0';
+	return (s1);
 }
