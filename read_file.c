@@ -6,11 +6,12 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:26:16 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/13 17:22:22 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/16 17:03:38 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <fcntl.h>
 
 int     get_height(char *file_name)
 {
@@ -53,7 +54,7 @@ void	fill_matrix(int	*z_line, char *line)
 	while (nums[i])
 	{
 		z_line[i] = ft_atoi(nums[i]);
-		free(nums[i])
+		free(nums[i]);
 		i++;
 	}
 	free(nums);
