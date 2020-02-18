@@ -6,7 +6,7 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 16:44:08 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/16 17:17:00 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:26:08 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	bresenham(float x, float y, float x1, float y1, fdf *data)
 	x1 *= data->zoom;
 	y1 *= data->zoom;
 	
-	draw->color = (z) ? 0xe80c0c : 0xffffff;
+	data->color = (z) ? 0xe80c0c : 0xffffff;
 	x_step = x1 - x;
 	y_step = y1 - y;
 	max = MAX(MOD(x_step), MOD(y_step));
@@ -45,7 +45,7 @@ void	bresenham(float x, float y, float x1, float y1, fdf *data)
 	y_step /= max;
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		mix_pixel_put(data->mlx_ptr,  data->win_ptr, x, y, 0xffffff);
+		mlx_pixel_put(data->mlx_ptr,  data->win_ptr, x, y, 0xffffff);
 		x += x_step;
 		y += y_step;
 	}

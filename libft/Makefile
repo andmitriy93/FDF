@@ -6,7 +6,7 @@
 #    By: dmian <dmian@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/18 09:18:50 by dmian             #+#    #+#              #
-#    Updated: 2019/10/10 16:44:23 by dmian            ###   ########.fr        #
+#    Updated: 2020/02/17 18:27:52 by dmian            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_countwords.c \
     ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c \
     ft_strrchr.c ft_strsplit.c ft_strstr.c \
     ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c \
-	ft_swapi.c ft_strupper.c
+	ft_swapi.c ft_strupper.c get_next_line.c
 OBJ = *.o
 INCLUDES = includes
 

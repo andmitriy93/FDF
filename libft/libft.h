@@ -6,7 +6,7 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:00:39 by nasanov           #+#    #+#             */
-/*   Updated: 2019/10/10 16:36:32 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:30:11 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# define BUFF_SIZE 1
+# include <fcntl.h>
 
 typedef struct		s_list
 {
@@ -90,5 +92,6 @@ t_list				*ft_lstnew(void const *content, size_t content_size);
 int					ft_iswspace(int c);
 void				ft_strupper(char *str);
 int					ft_numlen(long n, int base);
+int					get_next_line(const int fd, char **line);
 
 #endif

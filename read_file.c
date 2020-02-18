@@ -6,7 +6,7 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:26:16 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/16 17:03:38 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/17 17:09:46 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int     get_width(char *file_name)
 
 	fd = open(file_name, O_RDONLY, 0);
 	get_next_line(fd, &line);
-	width = ft_wdcounter(line, ' ');
+	width = ft_countwords(line, ' ');
 	free(line);
 	close(fd);
 	return (width);
