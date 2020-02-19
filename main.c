@@ -6,7 +6,7 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:52:35 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/17 17:16:45 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/17 21:26:36 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int		deal_key(int key, void *data)
 {
-	(void)data;
+	//(void)data;
 	printf("%d", key);
 	return (0);
 }
@@ -23,7 +23,7 @@ int		deal_key(int key, void *data)
 int		main(int argc, char **argv)
 {
 	fdf *data;
-	(void)argc;
+	//(void)argc;
 
 	data = (fdf*)malloc(sizeof(fdf));
 	read_file(argv[1], data);
