@@ -6,7 +6,7 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 16:23:36 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/18 20:20:07 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/20 15:49:52 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,30 @@
 
 typedef	struct
 {
-	int width;
-	int height;
-	int **z_matrix;
-	int	zoom;
-	int	color;
-	int	shift_x;
-	int	shift_y;
+	int 	width;
+	int 	height;
+	int 	**z_matrix;
+	int		zoom;
+	int		color;
+	int		shift_x;
+	int		shift_y;
 
 	void	*mlx_ptr;
 	void	*win_ptr;
 }			fdf;
 
+typedef	struct
+{
+	float	y;
+	float	x;
+	int		z;
+	
+}			coord;
+
 void	read_file(char *file_name, fdf *data);
-void	bresenham(float x, float y, float x1, float y1, fdf *data);
+void	bresenham(coord dotA, coord dotB, fdf *data);
 void	draw(fdf *data);
-void	isometric(float *x, float *y, int z);
-int		deal_key(int key, fdf *data);
+float	mod(float i);
+float	max(float x, float y);
 
 #endif

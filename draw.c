@@ -6,90 +6,88 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 16:44:08 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/18 20:13:41 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/20 15:53:56 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-#define MAX(a, b) (a > b ? a : b)
-#define MOD(a) ((a < 0) ? -a : a)
-
-float mod(float i)
+void	threeDimensional(coord	*thrD, coord *thrD2)
 {
-	return (i < 0) ? -i : i;
+	thrD->x = (thrD->x - thrD->y) * cos(0.8);
+	thrD->y = (thrD->x + thrD->y) * sin(0.8) - thrD->z;
+
+	thrD2->x = (thrD2->x - thrD2->y) * cos(0.8);
+	thrD2->y = (thrD2->x + thrD2->y) * sin(0.8) - thrD2->z;
 }
 
-float	max(float x, float y)
+void	zoom(coord	*dotA, coord *dotB, fdf *data)
 {
-	return (x > y ? x : y);
+	dotA->x *= data->zoom;
+	dotA->y *= data->zoom;
+	dotB->x *= data->zoom;
+	dotB->y *= data->zoom;
 }
 
-void	isometric(float *x, float *y, int z)
-{
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
-}
-
-void	bresenham(float x, float y, float x1, float y1, fdf *data)
+void	bresenham(coord dotA, coord dotB, fdf *data)
 {
 	float 	x_step;
 	float 	y_step;
 	int		maxx;
-	int		z;
-	int		z1;
 
-	z = data->z_matrix[(int)y][(int)x];
-	z1 = data->z_matrix[(int)y1][(int)x1];
+	dotA.z = data->z_matrix[(int)dotA.y][(int)dotA.x];
+	dotB.z = data->z_matrix[(int)dotB.y][(int)dotB.x];
 
-//---------zooom------------
-	x *= data->zoom;
-	y *= data->zoom;
-	x1 *= data->zoom;
-	y1 *= data->zoom;
-
-	//------color-----------
-	data->color = (z || z1) ? 0x2edd17 : 0xffffff;
-	//------3D---------------
-	isometric(&x, &y, z);
-	isometric(&x1, &y1, z1);
+	zoom(&dotA, &dotB, data);
+	// color
+	data->color = (dotA.z || dotB.z) ? 0x2edd17 : 0xffffff;
+	threeDimensional(&dotA, &dotB);
+	
 	//------shift-------------
-	x += data->shift_x;
-	y += data->shift_y;
-	x1 += data->shift_x;
-	y1 += data->shift_y;
+	dotA.x +=  400 + data->shift_x;
+	dotA.y +=  400 + data->shift_y;
+	dotB.x += 400 +	data->shift_x;
+	dotB.y += 400 + data->shift_y;
 
-	x_step = x1 - x;
-	y_step = y1 - y;
+	x_step = dotB.x - dotA.x;
+	y_step = dotB.y - dotA.y;
 	maxx = max(mod(x_step), mod(y_step));
 	x_step /= maxx;
 	y_step /= maxx;
-	while ((int)(x - x1) || (int)(y - y1))
+	while ((int)(dotA.x - dotB.x) || (int)(dotA.y - dotB.y))
 	{
-		mlx_pixel_put(data->mlx_ptr,  data->win_ptr, x, y, data->color);
-		x += x_step;
-		y += y_step;
+		mlx_pixel_put(data->mlx_ptr,  data->win_ptr,\
+		dotA.x, dotA.y, data->color);
+		dotA.x += x_step;
+		dotA.y += y_step;
 	}
 }
 
 void	draw(fdf *data)
 {
-	int x;
-	int y;
-
-	y = 0;
-	while (y < data->height)
+	coord	dotA;
+	coord	dotB;
+	dotA.y = 0;
+	while (dotA.y < data->height)
 	{
-		x = 0;
-		while (x < data->width)
+		dotA.x = 0;
+		while (dotA.x < data->width)
 		{
-			if (x < data->width - 1)
-				bresenham(x, y, x + 1, y, data);
-			if (y < data->height - 1)
-				bresenham(x, y, x, y + 1, data);
-			x++;
+			if (dotA.x < data->width - 1)
+			{
+				dotB.x = dotA.x + 1;
+				dotB.y = dotA.y;
+				bresenham(dotA, dotB, data);
+			}
+			if (dotA.y < data->height - 1)
+			{
+				dotB.x = dotA.x;
+				dotB.y = dotA.y + 1;
+				bresenham(dotA, dotB, data);
+			}
+			dotA.x += 1;
 		}
-		y++;
+		dotA.y += 1;
 	}
 }
