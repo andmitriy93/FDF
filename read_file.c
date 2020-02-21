@@ -6,35 +6,34 @@
 /*   By: dmian <dmian@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:26:16 by dmian             #+#    #+#             */
-/*   Updated: 2020/02/19 14:41:38 by dmian            ###   ########.fr       */
+/*   Updated: 2020/02/20 18:38:29 by dmian            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <fcntl.h>
 
-int     get_height(char *file_name)
+int		get_height(char *file_name)
 {
-    char    *line;
-    int     fd;
-    int     height;
+	char	*line;
+	int		fd;
+	int		height;
 
-    fd = open(file_name, O_RDONLY, 0);
-    height = 0;
-    while (get_next_line(fd, &line))
-    {
-        height++;
-        free(line);
-    }
-    close(fd);
-    return (height);
+	fd = open(file_name, O_RDONLY, 0);
+	height = 0;
+	while (get_next_line(fd, &line))
+	{
+		height++;
+		free(line);
+	}
+	close(fd);
+	return (height);
 }
 
-int     get_width(char *file_name)
+int		get_width(char *file_name)
 {
-    int     width;
-    int     fd;
-    char	*line;
+	int		width;
+	int		fd;
+	char	*line;
 
 	fd = open(file_name, O_RDONLY, 0);
 	get_next_line(fd, &line);
@@ -44,7 +43,7 @@ int     get_width(char *file_name)
 	return (width);
 }
 
-void	fill_matrix(int	*z_line, char *line)
+void	fill_matrix(int *z_line, char *line)
 {
 	char	**nums;
 	int		i;
@@ -60,7 +59,7 @@ void	fill_matrix(int	*z_line, char *line)
 	free(nums);
 }
 
-void	read_file(char *file_name, fdf *data)
+void	read_file(char *file_name, t_fdf *data)
 {
 	int		i;
 	int		fd;
